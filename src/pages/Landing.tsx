@@ -26,7 +26,7 @@ const Landing = () => {
             className="bg-white text-blue-600 hover:bg-gray-100"
             onClick={handleNavigation}
           >
-            {user ? "Go to Dashboard" : "Login / Sign Up"}
+            {"Go to Dashboard"}
           </Button>
         </div>
       </header>
