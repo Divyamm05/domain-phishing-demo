@@ -1,47 +1,49 @@
 const express = require("express");
-const mysql = require("mysql2/promise");
 const crypto = require("crypto");
-const sendResetEmail = require("../mailer"); 
-const dotenv = require('dotenv');
+const dotenv = require("dotenv");
 dotenv.config();
 
 const router = express.Router();
 
-// MySQL Connection
-const db = mysql.createPool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-});
+// === Dummy Users Store ===
+const dummyUsers = [
+  {
+    id: 1,
+    email: "aichatbot@iwantdemo.com",
+    password: "1234", // Will be replaced with hashed version
+    reset_token: "demo-token-123",
+    reset_token_expiry: Date.now() + 1000 * 60 * 10, // 10 mins from now
+  },
+];
 
-// Forgot Password Endpoint
+// === Dummy Reset Password Route ===
 router.post("/reset-password", async (req, res) => {
-    const { token, newPassword } = req.body;
-  
-    try {
-      // Validate token
-      const [users] = await db.query(
-        "SELECT * FROM users WHERE reset_token = ? AND reset_token_expiry > NOW()",
-        [token]
-      );
-  
-      if (users.length === 0) {
-        return res.status(400).json({ message: "Invalid or expired token" });
-      }
-  
-      // Hash new password (use bcrypt)
-      const hashedPassword = crypto.createHash("sha256").update(newPassword).digest("hex");
-  
-      // Update password in DB
-      await db.query("UPDATE users SET password = ?, reset_token = NULL, reset_token_expiry = NULL WHERE reset_token = ?", 
-        [hashedPassword, token]);
-  
-      res.json({ message: "Password reset successful" });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: "Server error" });
-    }
-  });
+  const { token, newPassword } = req.body;
+
+  if (!token || !newPassword) {
+    return res.status(400).json({ message: "Missing token or password" });
+  }
+
+  // Find user with valid token
+  const user = dummyUsers.find(
+    (u) => u.reset_token === token && u.reset_token_expiry > Date.now()
+  );
+
+  if (!user) {
+    return res.status(400).json({ message: "Invalid or expired token" });
+  }
+
+  // Hash new password (you can still use bcrypt in real use)
+  const hashedPassword = crypto.createHash("sha256").update(newPassword).digest("hex");
+
+  // Update dummy user
+  user.password = hashedPassword;
+  user.reset_token = null;
+  user.reset_token_expiry = null;
+
+  console.log("Updated user:", user); // Optional debug
+
+  return res.json({ message: "Password reset successful (dummy)" });
+});
 
 module.exports = router;
