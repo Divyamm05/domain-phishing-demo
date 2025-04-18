@@ -233,7 +233,7 @@ const Dashboard = () => {
 
           {/* User Info + Logout */}
           <div className="flex items-center gap-4">
-            <span>Hello, {user?.email}</span>
+            <span>{user?.email}</span>
             <Button className="bg-white text-black hover:bg-gray-300 transition-colors" onClick={handleLogout}>
               Logout
             </Button>

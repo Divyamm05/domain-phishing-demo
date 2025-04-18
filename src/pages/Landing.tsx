@@ -1,13 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { useAuth } from "../context/AuthContext";
 
 const Landing = () => {
   const navigate = useNavigate();
-  const { user } = useAuth();
 
   const handleNavigation = () => {
-    navigate(user ? "/dashboard" : "/login");
+    navigate("/dashboard");
   };
 
   return (
@@ -26,7 +24,7 @@ const Landing = () => {
             className="bg-white text-blue-600 hover:bg-gray-100"
             onClick={handleNavigation}
           >
-            {"Go to Dashboard"}
+            Go to Dashboard
           </Button>
         </div>
       </header>
@@ -45,7 +43,7 @@ const Landing = () => {
             className="bg-blue-600 text-white hover:bg-blue-700"
             onClick={handleNavigation}
           >
-            {user ? "Go to Dashboard" : "Get Started"}
+            Go to Dashboard
           </Button>
         </div>
       </main>

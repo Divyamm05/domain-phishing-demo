@@ -13,25 +13,6 @@ import NewPassword from "./pages/NewPassword";  // Page to set new password
 
 const queryClient = new QueryClient();
 
-// Protected route wrapper
-const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
-  const { user, isLoading } = useAuth();
-  
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin h-12 w-12 border-t-2 border-primary rounded-full"></div>
-      </div>
-    );
-  }
-  
-  if (!user) {
-    return <Navigate to="/login" replace />;
-  }
-  
-  return <>{children}</>;
-};
-
 const AppRoutes = () => {
   return (
     <Routes>
@@ -45,9 +26,7 @@ const AppRoutes = () => {
       <Route path="/new-password" element={<NewPassword />} />
       
       <Route path="/dashboard" element={
-        <ProtectedRoute>
           <Dashboard />
-        </ProtectedRoute>
       } />
       
       <Route path="*" element={<NotFound />} />
