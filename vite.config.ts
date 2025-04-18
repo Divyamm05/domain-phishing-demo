@@ -4,15 +4,15 @@ import path from "path";
 
 export default defineConfig(({ mode }) => ({
   server: {
-    host: "::",
+    host: "0.0.0.0",  // Change to listen on all interfaces (commonly used for deployments)
     port: 8080,
-    allowedHosts: true, 
+    allowedHosts: true,  // You can specify more restrictive hosts if needed
   },
   plugins: [react()],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
-      crypto: "crypto-browserify",
+      "@": path.resolve(__dirname, "./src"),  // Simplify imports from src
+      crypto: "crypto-browserify",  // Use crypto-browserify for browser compatibility
     },
   },
 }));
