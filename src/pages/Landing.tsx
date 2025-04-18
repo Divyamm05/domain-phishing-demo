@@ -15,9 +15,9 @@ const Landing = () => {
         <div className="container mx-auto py-4 px-4 flex justify-between items-center">
           <a href="/" className="flex items-center">
             <img
-              src="/newlogo.png"
+              src="/shared image.jpeg"
               alt="Connect Reseller Homepage"
-              className="h-10 filter brightness-0 invert"
+              className="h-10 "
             />
           </a>
           <Button
