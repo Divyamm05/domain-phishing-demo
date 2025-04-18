@@ -19,7 +19,6 @@ charset-normalizer==3.4.1
 cleo==2.1.0
 click==8.1.8
 colorama==0.4.3
-command-not-found==0.3
 configobj==5.0.6
 contourpy==1.1.1
 crashtest==0.4.1
