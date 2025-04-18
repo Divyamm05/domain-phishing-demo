@@ -5,7 +5,7 @@ import path from "path";
 export default defineConfig(({ mode }) => ({
   server: {
     host: "0.0.0.0",  // Change to listen on all interfaces (commonly used for deployments)
-    port: 8080,
+    port: 80,
     allowedHosts: true,  // You can specify more restrictive hosts if needed
   },
   plugins: [react()],
