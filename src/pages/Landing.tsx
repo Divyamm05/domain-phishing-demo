@@ -14,12 +14,7 @@ const Landing = () => {
       <header className="bg-blue-600 text-white shadow-md">
         <div className="container mx-auto py-4 px-4 flex justify-between items-center">
           <a href="/" className="flex items-center">
-            <img
-              src="/shared image.jpeg"
-              alt="Connect Reseller Homepage"
-              className="h-10 "
-            />
-          </a>
+           <img src="/shared image.jpeg" alt="Dark Dive logo" className="h-12 w-auto rounded object-contain" />          </a>
           <Button
             className="bg-white text-blue-600 hover:bg-gray-100"
             onClick={handleNavigation}

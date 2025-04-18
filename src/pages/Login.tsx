@@ -87,7 +87,7 @@ const Login = () => {
       <header className="bg-blue-600 text-white shadow-md">
         <div className="container mx-auto py-4 px-4 flex justify-between items-center">
         <a href="/login" className="flex items-center">
-          <img src="/newlogo.png" alt="Connect Reseller logo" className="h-10 filter brightness-0 invert" />
+          <img src="/shared image.jpeg" alt="Dark Dive logo" className="h-12 w-auto rounded object-contain" />
         </a>
         </div>
       </header>
